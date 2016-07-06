@@ -1,5 +1,6 @@
 function blockAndDisplay() {
-    var feed = $('[id^=topnews_main_stream], [id^=mostrecent_main_stream], [id^=pagelet_home_stream]');
+    var feed = 
+        $('[id^=rightCol], [id^=timeline_composer_container], [id^=stream_pagelet], [id^=topnews_main_stream], [id^=mostrecent_main_stream], [id^=pagelet_home_stream]');
     var message = $('#distracted');
 
     if (feed.length == 0) {
