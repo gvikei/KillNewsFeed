@@ -21,12 +21,16 @@ function displayQuora() {
     xhr.open('GET', 'https://www.quora.com', true);
     xhr.send();
     xhr.onload = function () {
-        $('#contentArea').children()[0].innerHTML = xhr.responseText;
+        processed_html = xhr.responseText.replace(/src="" data-src=/g, 'src=');
+        processed_html = processed_html.replace(/\<img class\=\"(\w+)\"\>/g, '\<img class\=\"$1\  style\=\"opacity\: 1\;\"\>');
+        $('#contentArea').children()[0].innerHTML = processed_html;
     };
 }
 
-window.setInterval(removeFacebookElements, 100);
-displayQuora();
+function process() {
+    window.setInterval(removeFacebookElements, 100);
+    displayQuora();
+}
 
-
-
+process();
+ 
