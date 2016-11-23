@@ -1,20 +1,12 @@
-function blockAndDisplay() {
+function removeFacebookElements() {
     var feed = 
-        $('[id^=rightCol], [id^=timeline_composer_container], [id^=stream_pagelet], [id^=topnews_main_stream], [id^=mostrecent_main_stream], [id^=pagelet_home_stream]');
+        $('[id^=rightCol], [id^=timeline_composer_container],  [id^=topnews_main_stream], [id^=mostrecent_main_stream]');
+    
     var message = $('#distracted');
 
     if (feed.length == 0) {
         message.remove();
-    } else if (message.length == 0) {
-        message = $('<h1>')
-            .attr('id', 'distracted')
-            .text("Don't get distracted by Facebook!")
-            .css('font-size', '30px')
-            .css('font-family', "'Helvetica Neue', Helvetica, Arial, 'lucida grande', tahoma, verdana, arial, sans-serif")
-            .css('position', 'relative')
-            .css('top', '75px');
-        $('[data-location=maincolumn]').append(message);
-     }
+    }
 
     feed.children().remove();
     $('.ticker_stream').remove();
@@ -24,4 +16,17 @@ function blockAndDisplay() {
     $('#pagelet_canvas_nav_content').remove();
 }
 
-window.setInterval(blockAndDisplay, 100);
+function displayQuora() {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'https://www.quora.com', true);
+    xhr.send();
+    xhr.onload = function () {
+        $('#contentArea').children()[0].innerHTML = xhr.responseText;
+    };
+}
+
+window.setInterval(removeFacebookElements, 100);
+displayQuora();
+
+
+
